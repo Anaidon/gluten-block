@@ -50,7 +50,7 @@ registerBlockType( 'cgb/block-gluten-block', {
 		},
 		imgUrl: {
 			type: 'string',
-			default: 'https://placehold.it/75',
+			default: 'https://upload.wikimedia.org/wikipedia/commons/7/71/Wheat_field.jpg',
 		},
 	},
 
@@ -66,7 +66,7 @@ registerBlockType( 'cgb/block-gluten-block', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: ( props ) => {
-		let { attributes: { title, description, imgUrl,}, setAttributes, className } = props;
+		let { attributes: { title, description, imgUrl }, setAttributes, className } = props;
 		function changeTitle(value) {
 			setAttributes({title: value});
 		}
@@ -74,7 +74,7 @@ registerBlockType( 'cgb/block-gluten-block', {
 			setAttributes({description: value});
 		}
 		function selectImg(value) {
-			setAttributes({imgUrl: value});
+			setAttributes( { imgUrl: value.sizes.thumbnail.url } );
 		}
 
 		// Creates a <p class='wp-block-cgb-block-gluten-block'></p>.
