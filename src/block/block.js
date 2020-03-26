@@ -11,6 +11,8 @@ import './style.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+const { RichText, PlainText, MediaUpload, MediaUploadCheck } = wp.blockEditor;
+
 
 /**
  * Register: aa Gutenberg Block.
@@ -28,13 +30,29 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 registerBlockType( 'cgb/block-gluten-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 	title: __( 'Gluten Block' ), // Block title.
-	icon: 'dashicons-buddicons-community', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
+	icon: 'heart', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
 		__( 'gluten-block — CGB Block' ),
 		__( 'Gluten Block' ),
 		__( 'create-gluten-block' ),
 	],
+	attributes: {
+		title: {
+			type: 'string',
+			source: 'html',
+			selector: '.title',
+		},
+		description: {
+			type: 'string',
+			source: 'html',
+			selector: '.description',
+		},
+		imgUrl: {
+			type: 'string',
+			default: 'https://placehold.it/75',
+		},
+	},
 
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
@@ -48,21 +66,30 @@ registerBlockType( 'cgb/block-gluten-block', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: ( props ) => {
+		let { attributes: { title, description, imgUrl,}, setAttributes, className } = props;
+		function changeTitle(value) {
+			setAttributes({title: value});
+		}
+		function changeDescription(value) {
+			setAttributes({description: value});
+		}
+		function selectImg(value) {
+			setAttributes({imgUrl: value});
+		}
+
 		// Creates a <p class='wp-block-cgb-block-gluten-block'></p>.
 		return (
 			<div className={ props.className }>
-				<p>— Hello from the backend.</p>
-				<p>
-					CGB BLOCK: <code>gluten-block</code> is a new Gutenberg block
-				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
+				<MediaUploadCheck>
+					<div className="photo">
+						<MediaUpload onSelect={ selectImg } render={ ( { open } ) =>
+							<img src={ imgUrl } onClick={ open } alt="Gluten" />
+						}
+						/>
+					</div>
+				</MediaUploadCheck>
+				<PlainText className="title" value={ title } onChange={ changeTitle } placeholder="Title of gluten block" />
+				<RichText className="description" tagName="div" placeholder="Add a delicious description" value={ description } onChange={ changeDescription } />
 			</div>
 		);
 	},
@@ -81,18 +108,9 @@ registerBlockType( 'cgb/block-gluten-block', {
 	save: ( props ) => {
 		return (
 			<div className={ props.className }>
-				<p>— Hello from the frontend.</p>
-				<p>
-					CGB BLOCK: <code>gluten-block</code> is a new Gutenberg block.
-				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
+				<img src={ props.attributes.imgUrl } alt="Gluten" />
+				<h3 className="title">{ props.attributes.title }</h3>
+				<RichText.Content tagName="div" className="description" value={ props.attributes.description } />
 			</div>
 		);
 	},
