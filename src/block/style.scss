@@ -5,10 +5,37 @@
  */
 
 .wp-block-cgb-block-gluten-block  {
-  background: $red;
-  border: 0.2rem solid $black;
-  color: $black;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem;
+  display: flex;
+  padding: 24px;
+  background: #ececec;
+  border-radius: 24px;
+  .gb-ImgWrapper {
+	flex: 0 0 160px;
+  }
+  .gb-Img {
+	border-radius: 5px;
+  }
+  .gb-ContentWrapper {
+	flex: 1;
+	padding-left: 24px;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+  }
+  .gb-GlutenBlockTag {
+	text-transform: uppercase;
+	color: #6a6a6a;
+	font-size: .75em;
+	letter-spacing: 3px;
+	margin-bottom: 0;
+  }
+  .title {
+	font-size: 2em;
+	width: 100%;
+	margin-bottom: 6px;
+  }
+  .description {
+	margin-bottom: 0;
+	line-height: 1.7;
+  }
 }

@@ -80,16 +80,20 @@ registerBlockType( 'cgb/block-gluten-block', {
 		// Creates a <p class='wp-block-cgb-block-gluten-block'></p>.
 		return (
 			<div className={ props.className }>
-				<MediaUploadCheck>
-					<div className="photo">
-						<MediaUpload onSelect={ selectImg } render={ ( { open } ) =>
-							<img src={ imgUrl } onClick={ open } alt="Gluten" />
-						}
-						/>
-					</div>
-				</MediaUploadCheck>
-				<PlainText className="title" value={ title } onChange={ changeTitle } placeholder="Title of gluten block" />
-				<RichText className="description" tagName="div" placeholder="Add a delicious description" value={ description } onChange={ changeDescription } />
+				<div className="gb-ImgWrapper">
+					<MediaUploadCheck>
+						<div className="photo">
+							<MediaUpload onSelect={ selectImg } render={ ( { open } ) =>
+								<img className="gb-Img" src={ imgUrl } onClick={ open } alt="Gluten" />
+							}
+							/>
+						</div>
+					</MediaUploadCheck>
+				</div>
+				<div className="gb-ContentWrapper">
+					<RichText className="title" value={ title } onChange={ changeTitle } placeholder="Title of gluten block" />
+					<PlainText className="description" tagName="div" placeholder="Add a delicious description" value={ description } onChange={ changeDescription } />
+				</div>
 			</div>
 		);
 	},
@@ -108,9 +112,14 @@ registerBlockType( 'cgb/block-gluten-block', {
 	save: ( props ) => {
 		return (
 			<div className={ props.className }>
-				<img src={ props.attributes.imgUrl } alt="Gluten" />
-				<h3 className="title">{ props.attributes.title }</h3>
-				<RichText.Content tagName="div" className="description" value={ props.attributes.description } />
+				<div className="gb-ImgWrapper">
+					<img src={ props.attributes.imgUrl } className="gb-Img" alt="Gluten" />
+				</div>
+				<div className="gb-ContentWrapper">
+					<p className="gb-GlutenBlockTag">Gluten Block</p>
+					<h3 className="title">{ props.attributes.title }</h3>
+					<p className="description">{ props.attributes.description }</p>
+				</div>
 			</div>
 		);
 	},

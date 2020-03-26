@@ -10,10 +10,18 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-.wp-block-cgb-block-gluten-block {
-  background: #bada55;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
+.wp-block-cgb-block-gluten-block .block-editor-rich-text {
+  width: 100%;
+  background: white;
+  height: 32px;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 24px; }
+  .wp-block-cgb-block-gluten-block .block-editor-rich-text .block-editor-rich-text__editable {
+    font-size: 15px; }
+
+.wp-block-cgb-block-gluten-block .block-editor-plain-text {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 24px; }

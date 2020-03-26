@@ -10,9 +10,36 @@
  * CSS for both Frontend+Backend.
  */
 .wp-block-cgb-block-gluten-block {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
+  display: -ms-flexbox;
+  display: flex;
+  padding: 24px;
+  background: #ececec;
+  border-radius: 24px; }
+  .wp-block-cgb-block-gluten-block .gb-ImgWrapper {
+    -ms-flex: 0 0 160px;
+        flex: 0 0 160px; }
+  .wp-block-cgb-block-gluten-block .gb-Img {
+    border-radius: 5px; }
+  .wp-block-cgb-block-gluten-block .gb-ContentWrapper {
+    -ms-flex: 1;
+        flex: 1;
+    padding-left: 24px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-line-pack: start;
+        align-content: flex-start; }
+  .wp-block-cgb-block-gluten-block .gb-GlutenBlockTag {
+    text-transform: uppercase;
+    color: #6a6a6a;
+    font-size: .75em;
+    letter-spacing: 3px;
+    margin-bottom: 0; }
+  .wp-block-cgb-block-gluten-block .title {
+    font-size: 2em;
+    width: 100%;
+    margin-bottom: 6px; }
+  .wp-block-cgb-block-gluten-block .description {
+    margin-bottom: 0;
+    line-height: 1.7; }
